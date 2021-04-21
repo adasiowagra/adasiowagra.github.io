@@ -117,21 +117,6 @@
       document.getElementById("author").innerHTML = "3";
       document.getElementById("title").innerHTML = "GET READY";
     }
-    
-    function toggleFullScreen() {
-      var doc = window.document;
-      var docEl = doc.documentElement;
-
-      var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-      var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-      if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-        requestFullScreen.call(docEl);
-      }
-      else {
-        cancelFullScreen.call(doc);
-      }
-    }
 
     function starting(){
       if (deck_pol & deck_int) {
@@ -161,7 +146,7 @@
       window.setTimeout(function(){ change_author('1'); }, 2000);
       window.setTimeout(function(){ change_author('Go!'); }, 3000);
       window.setTimeout(GameStart, 4000);
-      toggleFullScreen();
+      document.getElementById("body").requestFullscreen({ navigationUI: 'hide' });
     }
 
     function GameStart(){
