@@ -1,0 +1,123 @@
+body {
+  background-color: #444;
+}
+
+span {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width: 50%;
+  z-index: 3;
+  display: none;
+}
+#leftside {
+  left: 0%;
+}
+#rightside {
+  left: 50%;
+}
+
+div {
+  text-align: center;
+  margin-top: 0vmin;
+  /* pointer-events:none; */
+}
+#main {
+  display: none;
+}
+#end {
+  display: none;
+}
+#settings {
+  margin-top: 5vmin;
+  margin-left: 20%;
+  text-align: left;
+  font-size: 6vmin;
+}
+
+form {
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  margin-bottom: 5vmin;
+}
+
+input[type=checkbox] {
+    width: 5vmin;
+    height: 5vmin;
+    margin: 1vmin;
+}
+
+input[type=text] {
+  font-family: 'Raleway', sans-serif;
+  font-size: 5vmin;
+  margin: 1vmin;
+}
+
+button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 8vmin;
+  color: white;
+  background-color: #040;
+  width: 48vmin;
+  height: 12vmin;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  pointer-events:none;
+}
+#title {
+  font-size: 14vmin;
+  font-weight: 900;
+  margin-top: 4vmin;
+  margin-bottom: 3vmin;
+}
+#author {
+  font-size: 10vmin;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+#timer {
+  text-align: left;
+  font-size: 6vmin;
+  font-weight: 700;
+  margin-top: 1vmin;
+  margin-left: 1vmin;
+}
+#score {
+  font-size: 12vmin;
+  font-weight: 900;
+  margin-top: 4vmin;
+}
+#error {
+  color: red;
+}
+
+p.set_par {
+  margin: 0px;
+}
+
+ul {
+  margin-top: 2vmin;
+  font-family: 'Raleway', sans-serif;
+  font-size: 6vmin;
+  font-weight: 700;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+li {
+  margin-top: 1vmin;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+li.yes {
+  color: #bfb;
+  list-style-type: none;
+}
+li.no {
+  color: #fbb;
+  list-style-type: none;
+}

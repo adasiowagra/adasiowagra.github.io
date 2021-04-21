@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href='http://fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+  <meta name="description" content="Urodzinowa gra dla Adasia">
+  <meta name="keywords" content="Adaś, Urodziny, Gra">
+  <meta name="author" content="Tomek Wąs">
+  <title>Adasiowa Gra</title>
+
+  <link rel="stylesheet" href="./mystyle.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body id="body">
+
+  <div id="settings">
+    <p class="set_par">
+      Cards:
+    </p>
+    <form>
+      <input type="checkbox" id="deck1" name="deck1" value="Polskie" checked>
+      <label for="deck1"> Polskie </label><br>
+      <input type="checkbox" id="deck2" name="deck2" value="International" checked>
+      <label for="deck2"> International </label><br>
+    </form>
+    <form>
+      <label for="fname">Time limit (0-300)</label><br>
+      <input type="text" id="time_lim" name="time_lim" value="45"><br>
+      <label for="lname">Card limit (0-300)</label><br>
+      <input type="text" id="card_lim" name="card_lim" value="0"><br>
+    </form>
+    <button id="start_button" onclick="start_button()">
+      START
+    </button>
+    <p id="error">
+    </p>
+  </div>
+
+  <div id="main">
+    <p id="timer">
+      1:00
+    </p>
+    <p id="title">
+      GET READY
+    </p>
+    <p id="author">
+      3
+    </p>
+  </div>
+
+  <div id="end">
+    <p id="score">
+      0 out of 0
+    </p>
+    <button id="replay_button" onclick="replay_button()">
+      REPLAY
+    </button>
+    <div id="songs">
+    </div>
+  </div>
+
+  <span id="leftside"></span>
+  <span id="rightside"></span>
+
+  <script src="./song-data.js"></script>
+  <script>
+    // numbers of cards in dataset - check this and manually set
+    var all_cards_int = 401;
+    var all_cards_pol = 258;
+    // other variables
+    var played = [];
+    var guessed = [];
+    var t=15;
+    var n=0;
+    var cards_n = 100;
+    var cards_s = 0;
+    var card_l = 0;
+    var deck_pol = false;
+    var deck_int = false;
+
+    function sample_card(songs){
+      var x = Math.floor((Math.random() * cards_n) + cards_s);
+      while (played.includes(x)){
+        var x = Math.floor((Math.random() * cards_n) + cards_s);
+      }
+      played.push(x);
+      n = n + 1;
+      document.getElementById("author").innerHTML = songs[x]['author'];
+      document.getElementById("title").innerHTML = songs[x]['title'];
+    }
+
+    function change_author(text){
+      document.getElementById("author").innerHTML = text;
+    }
+
+    function start_button(){
+      deck_pol = document.getElementById("deck1").checked;
+      deck_int = document.getElementById("deck2").checked;
+      if (!(deck_pol) & !(deck_int)) {
+        document.getElementById("error").innerHTML = "NO CARDS";
+      } else {
+        starting();
+      }
+    }
+
+    function replay_button(){
+      n = 0;
+      played = [];
+      guessed = [];
+      starting();
+      document.getElementById("end").style.display = "none";
+      document.getElementById("author").innerHTML = "3";
+      document.getElementById("title").innerHTML = "GET READY";
+    }
+
+    function starting(){
+      if (deck_pol & deck_int) {
+        cards_n = all_cards_int + all_cards_pol;
+        cards_s = 0;
+      } else if (deck_int) {
+        cards_n = all_cards_int;
+        cards_s = 0;
+      } else if (deck_pol) {
+        cards_n = all_cards_pol;
+        cards_s = all_cards_int;
+      }
+      card_l = document.getElementById("card_lim").value;
+      if (card_l == 0){
+        card_l = cards_n;
+      }
+      t = document.getElementById("time_lim").value;
+      if (t==0) {
+        document.getElementById("timer").style.color = "#040";
+      } else {
+        update_timer(t);
+      }
+      document.getElementById("settings").style.display = "none";
+      document.getElementById("main").style.display = "block";
+      document.getElementById("body").style.backgroundColor = "#040";
+      window.setTimeout(function(){ change_author('2'); }, 1000);
+      window.setTimeout(function(){ change_author('1'); }, 2000);
+      window.setTimeout(function(){ change_author('Go!'); }, 3000);
+      window.setTimeout(GameStart, 4000);
+    }
+
+    function GameStart(){
+      sample_card(songs);
+      document.getElementById("leftside").style.display = "block";
+      document.getElementById("rightside").style.display = "block";
+      if (t>0) {
+        timer_interval = window.setInterval(function(){ timer(); }, 1000);
+      }
+    }
+
+    function update_timer(t){
+      sec = t % 60;
+      min = (t-sec)/60;
+      if (sec>9){
+        document.getElementById("timer").innerHTML = min.toString() + ':' + sec.toString();
+      } else {
+        document.getElementById("timer").innerHTML = min.toString() + ':0' + sec.toString();
+      }
+    }
+
+    function timer(){
+      t = t -1;
+      if (t>-1){
+        update_timer(t);
+      } else {
+        clearTimeout(timer_interval);
+        guessed.push(false);
+        EndGame();
+      }
+    }
+
+    function SetScores(played, guessed, n){
+      var g=0;
+      text = '<ul>';
+      for (i = 0; i < n; i++){
+        if (guessed[i]){
+          g = g+1;
+          text += '<li class="yes"> + ' + songs[played[i]]['title'] + ' - ' + songs[played[i]]['author'] + ' + </li>';
+        } else {
+          text += '<li class="no"> - ' + songs[played[i]]['title'] + ' - ' + songs[played[i]]['author'] + ' - </li>';
+        }
+      }
+      text += '</ul>';
+      document.getElementById("songs").innerHTML = text;
+      document.getElementById("score").innerHTML = g.toString() + ' out of ' + n.toString();
+    }
+    function EndGame(){
+      document.getElementById("main").style.display = "none";
+      document.getElementById("leftside").style.display = "none";
+      document.getElementById("rightside").style.display = "none";
+      document.getElementById("body").style.backgroundColor = "#333";
+      SetScores(played,guessed,n);
+      document.getElementById("end").style.display = "block";
+    }
+    $("#rightside").click(function() {
+      // alert("leftside clicked!");
+      guessed.push(false);
+      if (n == card_l) {
+        EndGame();
+      }
+      sample_card(songs);
+    });
+    $("#leftside").click(function() {
+      // alert("rightside clicked!");
+      guessed.push(true);
+      if (n == card_l) {
+        EndGame();
+      }
+      sample_card(songs);
+    });
+    // let isHor = window.matchMedia("only screen and (orientation: landscape)").matches;
+    //
+    // var x = Math.floor((Math.random() * 10) + 1);
+    //
+    // console.log("photo " + x.toString())
+    //
+    // var str = "url(./img/m-background" + x.toString() + ".jpg)"
+    //
+    // document.getElementById("top_banner").style.backgroundImage = str;
+    // document.getElementById("mid_banner").style.backgroundImage = str;
+    // document.getElementById("bot_banner").style.backgroundImage = str;
+    //
+    // if(isHor) {
+    //   str = "url(./img/background" + x.toString() + ".jpg)"
+    //
+    //   document.getElementById("top_banner").style.backgroundImage = str;
+    //   document.getElementById("top_banner").style.backgroundPosition = "center top";
+    //   document.getElementById("bot_banner").style.backgroundImage = str;
+    //   document.getElementById("bot_banner").style.backgroundPosition = "center bottom";
+    // }
+  </script>
+</body>
+
+<!--- Made using purecss.io--->
+</html>
