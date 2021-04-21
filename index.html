@@ -138,7 +138,6 @@
       } else {
         update_timer(t);
       }
-      document.requestFullscreen();
       document.getElementById("settings").style.display = "none";
       document.getElementById("main").style.display = "block";
       document.getElementById("body").style.backgroundColor = "#040";
@@ -146,6 +145,7 @@
       window.setTimeout(function(){ change_author('1'); }, 2000);
       window.setTimeout(function(){ change_author('Go!'); }, 3000);
       window.setTimeout(GameStart, 4000);
+      body.requestFullscreen();
     }
 
     function GameStart(){
@@ -200,7 +200,7 @@
       document.getElementById("body").style.backgroundColor = "#333";
       SetScores(played,guessed,n);
       document.getElementById("end").style.display = "block";
-      Document.exitFullscreen();
+      document.exitFullscreen();
     }
     $("#rightside").click(function() {
       // alert("leftside clicked!");

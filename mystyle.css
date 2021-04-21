@@ -24,6 +24,8 @@ div {
 }
 #main {
   display: none;
+  background-color: #040;
+  height: 100%
 }
 #end {
   display: none;
