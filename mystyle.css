@@ -122,6 +122,8 @@ li.no {
   list-style-type: none;
 }
 
+@import url(//fonts.googleapis.com/css?family=Raleway:700,900);
+
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
