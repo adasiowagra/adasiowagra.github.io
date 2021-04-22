@@ -1,4 +1,4 @@
-<!-- 2 -->
+<!-- 3 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
 
   <div id="settings">
     <p class="set_par">
-      Cards:
+      Songs:
     </p>
     <form>
       <input type="checkbox" id="deck1" name="deck1" value="Polskie" checked>
@@ -31,7 +31,7 @@
     <form>
       <label for="fname">Time limit:</label><br>
       <input type="text" id="time_lim" name="time_lim" value="45"><br>
-      <label for="lname">Card limit:</label><br>
+      <label for="lname">Song limit:</label><br>
       <input type="text" id="card_lim" name="card_lim" value="0"><br>
     </form>
     <button id="start_button" onclick="start_button()">
@@ -102,7 +102,7 @@
       deck_pol = document.getElementById("deck1").checked;
       deck_int = document.getElementById("deck2").checked;
       if (!(deck_pol) & !(deck_int)) {
-        document.getElementById("error").innerHTML = "NO CARDS";
+        document.getElementById("error").innerHTML = "NO SONGS :(";
       } else {
         starting();
       }
