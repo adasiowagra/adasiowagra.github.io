@@ -24,7 +24,8 @@ div {
 }
 #main {
   display: none;
-  background-color: #040;
+  background: #040;
+  background: linear-gradient(90deg, #040 0%, #444 50%, #400 100%);
   height: 100%
 }
 #end {
