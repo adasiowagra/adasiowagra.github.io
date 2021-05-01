@@ -457,7 +457,7 @@ var songs = [
   {title: 'MASZYNKA DO ŚWIERKANIA', author: 'CZESŁAW ŚPIEWA', deck: 'POL'},
   {title: 'MAŁOMIASTECZKOWY', author: 'DAWID PODSIADŁO', deck: 'POL'},
   {title: 'NIE MA FAL', author: 'DAWID PODSIADŁO', deck: 'POL'},
-  {title: 'NIEZNAJOMY', author: 'DAWID PODSIADŁO', deck: 'POL'},
+  {title: 'TRÓJKĄTY I KWADRATY', author: 'DAWID PODSIADŁO', deck: 'POL'},
   {title: 'KOCHAĆ INACZEJ', author: 'DE MONO', deck: 'POL'},
   {title: 'STATKI NA NIEBIE', author: 'DE MONO', deck: 'POL'},
   {title: 'NIE DAJ SIĘ', author: 'DODA', deck: 'POL'},
