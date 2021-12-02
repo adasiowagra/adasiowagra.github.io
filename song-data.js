@@ -436,6 +436,7 @@ var songs = [
   {title: 'JESTEŚ SZALONA', author: 'BOYS', deck: 'POL'},
   {title: 'JANKO, JANECZKO', author: 'BRACIA FIGO FAGOT', deck: 'POL'},
   {title: 'WÓDA ZRYJE BANIĘ', author: 'BRACIA FIGO FAGOT', deck: 'POL'},
+  {title: 'PISARZ MIŁOŚCI', author: 'BRACIA FIGO FAGOT', deck: 'POL'},
   {title: 'CZERWONE KORALE', author: 'BRATHANKI', deck: 'POL'},
   {title: 'W KINIE W LUBLINIE', author: 'BRATHANKI', deck: 'POL'},
   {title: 'KIEDY BYŁEM MAŁYM CHŁOPCEM', author: 'BREAKOUT', deck: 'POL'},
