@@ -77,6 +77,7 @@ var songs = [
   {title: 'YELLOW', author: 'COLDPLAY', deck: 'INT'},
   {title: 'GANGSTA\'S PARADISE', author: 'COOLIO', deck: 'INT'},
   {title: 'SUNSHINE OF YOUR LOVE', author: 'CREAM', deck: 'INT'},
+  {title: 'FORTUNATE SON', author: 'CREEDENCE CLEARWATER REVIVAL', deck: 'INT'},
   {title: 'SUZY Q', author: 'CREEDENCE CLEARWATER REVIVAL', deck: 'INT'},
   {title: 'HAVE YOU EVER SEEN THE RAIN?', author: 'CREEDENCE CLEARWATER REVIVAL', deck: 'INT'},
   {title: 'DO YOU REALLY WANT TO HURT ME', author: 'CULTURE CLUB', deck: 'INT'},
